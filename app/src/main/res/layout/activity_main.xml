@@ -9,12 +9,25 @@
     <FrameLayout
         android:text="@string/hello_world"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <Toolbar  xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/toolbar"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:minHeight="?android:attr/actionBarSize"
+                  android:background="?android:attr/colorPrimary"
+                  android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
+                  android:popupTheme="@android:style/ThemeOverlay.Material.Light"
+            />
+
+    </FrameLayout>
     <ListView
         android:id="@+id/slideLayout"
         android:layout_gravity="start"
-        android:background="@color/drawer_layout"
-        android:layout_width="240dp"
+        android:background="@android:color/white"
+        android:layout_width="300dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"
         android:layout_height="match_parent" />
 
 </android.support.v4.widget.DrawerLayout>

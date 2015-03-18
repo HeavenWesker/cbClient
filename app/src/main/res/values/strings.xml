@@ -2,10 +2,13 @@
     <string name="app_name">cbClient</string>
 
     <string-array name="dummy_slide_content">
-        <item>Home</item>
-        <item>Theme</item>
-        <item>Setting</item>
-        <item>About</item>
+        <item>首页</item>
+        <item>投稿</item>
+        <item>招聘</item>
+        <item>互动</item>
+        <item>设置</item>
+        <item>主题</item>
+        <item>排行</item>
     </string-array>
 
     <string name="hello_world">Hello world!</string>
