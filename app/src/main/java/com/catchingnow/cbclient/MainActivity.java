@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,9 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,17 +22,10 @@ import android.widget.Toolbar;
 
 public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    private static int LOW_DPI_STATUS_BAR_HEIGHT = 19;
-    private static int MEDIUM_DPI_STATUS_BAR_HEIGHT = 25;
-    private static int HIGH_DPI_STATUS_BAR_HEIGHT = 38;
-
     String[]              slideContent;
     ListView              slideLayout;
-    ArrayAdapter<String>  drawerAdapter;
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout          drawerLayout;
-    FrameLayout           centerLayout;
-    DisplayMetrics displayMetrics = new DisplayMetrics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +37,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         slideContent = getResources().getStringArray(R.array.dummy_slide_content);
         slideLayout = (ListView) findViewById(R.id.slideLayout);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-//        drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, slideContent);
         slideLayout.setAdapter(new MyAdapter(this));
         slideLayout.setOnItemClickListener(this);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
@@ -57,7 +46,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        drawerLayout.setStatusBarBackgroundColor(R.color.colorPrimaryDark);
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     @Override
