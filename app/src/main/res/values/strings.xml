@@ -11,6 +11,12 @@
         <item>排行</item>
     </string-array>
 
+    <string-array name="page_titles">
+        <item>page 1</item>
+        <item>page 2</item>
+        <item>page 3</item>
+    </string-array>
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_layout_open">Drawer Layout Closed</string>

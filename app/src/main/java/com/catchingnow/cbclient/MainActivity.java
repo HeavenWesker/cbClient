@@ -1,8 +1,11 @@
 package com.catchingnow.cbclient;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -22,10 +25,14 @@ import android.widget.Toolbar;
 
 public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
 
+    String[] pagerTitles;// = getResources().getStringArray(R.array.page_titles);
+
     String[]              slideContent;
     ListView              slideLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout          drawerLayout;
+    ViewPager       viewPager;
+    PagerTabStrip   pagerTabStrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
+        pagerTitles = getResources().getStringArray(R.array.page_titles);
         slideContent = getResources().getStringArray(R.array.dummy_slide_content);
         slideLayout = (ListView) findViewById(R.id.slideLayout);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -47,6 +55,27 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         getActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+//        viewPager.setPadding(0, 24+56+72, 0, 0);
+        viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()) {
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return pagerTitles[position];
+            }
+
+            @Override
+            public int getCount() {
+                return pagerTitles.length;
+            }
+
+        });
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//        for (String pagerTitle:pagerTitles) {
+//            actionBar.addTab(actionBar.newTab().setText(pagerTitle));
+//        }
+        pagerTabStrip = (PagerTabStrip) findViewById(R.id.tab);
+
     }
 
     @Override
