@@ -2,50 +2,50 @@ package com.catchingnow.cbclient;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
  * Created by Heaven on 3/19/15.
  */
-public abstract class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    //TODO Change this with real data
+    public List<Map<String, Object>> listItems = new ArrayList<>();
+    public Context context;
 
-    public SectionsPagerAdapter(FragmentManager fm){
+    public SectionsPagerAdapter(FragmentManager fm, Context context){
+        this(fm);
+        this.context = context;
+    }
+    public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
+        for (int i = 0; i < 40; i++){
+            Map<String, Object> listItem = new HashMap<>();
+            listItem.put("title", "The 1th title");
+            listItem.put("image", R.mipmap.ic_launcher);
+            listItems.add(listItem);
+        }
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = PlaceholderFragment.newInstance(position+1);
-        return fragment;
+        ArticleItemFragment articleItemFragment = new ArticleItemFragment();
+        return articleItemFragment;
     }
 
     @Override
-    public abstract CharSequence getPageTitle(int position);
+    public CharSequence getPageTitle(int position) {
+        return null;
+    }
 
     @Override
-    public abstract int getCount();
-
-    public static class PlaceholderFragment extends android.app.Fragment {
-        public PlaceholderFragment(){
-
-        }
-        public static PlaceholderFragment newInstance(int insertPosition){
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            return fragment;
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            return super.onCreateView(inflater, container, savedInstanceState);
-            View pagerView = inflater.inflate(R.layout.pager_view, container, false);
-            return pagerView;
-        }
+    public int getCount() {
+        return 0;
     }
 }

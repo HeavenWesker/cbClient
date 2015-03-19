@@ -1,6 +1,5 @@
 package com.catchingnow.cbclient;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 
-public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
+public class MainActivity extends Activity implements AdapterView.OnItemClickListener, ArticleItemFragment.OnFragmentInteractionListener {
 
     String[] pagerTitles;// = getResources().getStringArray(R.array.page_titles);
 
@@ -51,13 +50,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 drawerLayout,
                 R.string.drawer_layout_open,
                 R.string.drawer_layout_close);
-        getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 //        viewPager.setPadding(0, 24+56+72, 0, 0);
-        viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()) {
+        viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager(), this) {
             @Override
             public CharSequence getPageTitle(int position) {
                 return pagerTitles[position];
@@ -121,6 +119,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         setTitle(slideContent[position]);
         drawerLayout.closeDrawer(Gravity.START);
     }
+
+    @Override
+    public void onFragmentInteraction(int id) {
+
+    }
+
     class MyAdapter extends BaseAdapter{
         String[] catalogs;
         Context context;
@@ -129,6 +133,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 R.mipmap.ic_launcher,
                 R.mipmap.ic_launcher,
                 R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,
+                R.mipmap.ic_action_settings,
         };
 
         public MyAdapter(Context context){
