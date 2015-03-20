@@ -122,6 +122,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
     @Override
     public void onFragmentInteraction(int id) {
+        Log.d("Clicked", ""+id);
 
     }
 
