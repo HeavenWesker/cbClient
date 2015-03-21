@@ -2,6 +2,7 @@ package com.catchingnow.cbclient;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -73,6 +74,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 //            actionBar.addTab(actionBar.newTab().setText(pagerTitle));
 //        }
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.tab);
+        new NetWork().getData();
 
     }
 
@@ -123,6 +125,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     @Override
     public void onFragmentInteraction(int id) {
         Log.d("Clicked", ""+id);
+        Intent intent = new Intent(this, ArticleDetail.class);
+        startActivity(intent);
 
     }
 
