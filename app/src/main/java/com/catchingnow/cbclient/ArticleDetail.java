@@ -2,6 +2,7 @@ package com.catchingnow.cbclient;
 
 import java.util.Locale;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,9 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 
-public class ArticleDetail extends ActionBarActivity {
+public class ArticleDetail extends FragmentActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -49,6 +51,9 @@ public class ArticleDetail extends ActionBarActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setActionBar(toolbar);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

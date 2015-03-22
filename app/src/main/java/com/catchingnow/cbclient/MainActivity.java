@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 R.string.drawer_layout_close);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 //        viewPager.setPadding(0, 24+56+72, 0, 0);
         viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager(), this) {
