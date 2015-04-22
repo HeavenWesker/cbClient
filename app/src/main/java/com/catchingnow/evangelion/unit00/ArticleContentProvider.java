@@ -24,32 +24,21 @@ import java.util.ArrayList;
 public class ArticleContentProvider extends ContentProvider {
 
     public static Uri CONTENT_URI;
-    public static final int DATABASE_VERSION, uriCode_ALL = 0, uriCode_SINGLE_ROW = 1;
+    public static final int uriCode_ALL = 0, uriCode_SINGLE_ROW = 1;
     public static UriMatcher uriMatcher;
-    public static final String     ID, TITLE, DATE, LINK, CONTENT, OTHER, DATABASE_NAME, TABLE_NAME,
-            TYPE_TEXT, TYPE_INT, TYPE_PRIMARY_KEY, COMMA_SEP, AUTHORITY, URL,
+    public static final String      TABLE_NAME, AUTHORITY, URL,
             BROAD_CAST_MESSAGE_DATABASE_UPDATED, MESSAGE_TYPE, MESSAGE_TYPE_INSERT, MESSAGE_TYPE_DELETE,
     IDs;
-    public static final IntentFilter intentFilter;// = new IntentFilter(DATABASE_UPDATED);
+    public static final IntentFilter intentFilter;
+    public static final ArticleDBContract.ArticleInfo articleInfo;
     private LocalBroadcastManager localBroadcastManager;
 
     static {
+        articleInfo = new ArticleDBContract.ArticleInfo();
         AUTHORITY = "com.catchingnow.evangelion.unit00.provider";
-        TABLE_NAME = "Unit00TABLE";
+        TABLE_NAME = articleInfo.TABLE_NAME;
         URL = "content://" + AUTHORITY + "/" + TABLE_NAME;
         CONTENT_URI = Uri.parse(URL);
-        DATABASE_NAME = "Unit00DATABASE";
-        DATABASE_VERSION = 5;
-        ID = "_id";
-        TITLE = "Title";
-        DATE = "Date";
-        LINK = "Link";
-        CONTENT = "Content";
-        OTHER = "Other";
-        TYPE_TEXT = " TEXT";
-        TYPE_INT = " INTEGER";
-        TYPE_PRIMARY_KEY = " INTEGER PRIMARY KEY";
-        COMMA_SEP = ",";
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, TABLE_NAME, uriCode_ALL);
         uriMatcher.addURI(AUTHORITY, TABLE_NAME + "/#", uriCode_SINGLE_ROW);
@@ -80,7 +69,7 @@ public class ArticleContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Log.d("QUERY", "QUERY ENTER");
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-        qb.setTables(TABLE_NAME);
+        qb.setTables(articleInfo.TABLE_NAME);
         switch (uriMatcher.match(uri)){
             case uriCode_SINGLE_ROW:
             case uriCode_ALL:{
@@ -98,10 +87,8 @@ public class ArticleContentProvider extends ContentProvider {
     public String getType(Uri uri) {
         switch (uriMatcher.match(uri)){
             case uriCode_ALL:{
-//                return CONTENT_URI.toString();
                 return "vnd.android.cursor.dir/vnd."+AUTHORITY+"."+TABLE_NAME;
             } case uriCode_SINGLE_ROW:{
-//                return CONTENT_URI.toString();
                 return "vnd.android.cursor.item/vnd."+AUTHORITY+"."+TABLE_NAME;
             } default:{
                 throw  new IllegalArgumentException("Unknown URI" +uri);
@@ -116,7 +103,7 @@ public class ArticleContentProvider extends ContentProvider {
         if (rowID > 0){
             localBroadcastManager.sendBroadcast(new Intent(BROAD_CAST_MESSAGE_DATABASE_UPDATED)
                             .putExtra(MESSAGE_TYPE, MESSAGE_TYPE_INSERT)
-                            .putExtra(ID, rowID));
+                            .putExtra(articleInfo.COLUMN_NAME_ID, rowID));
             return ContentUris.withAppendedId(CONTENT_URI, rowID);
         }else {
             return null;//WTF TODO ERROR HAPPENED
@@ -130,10 +117,10 @@ public class ArticleContentProvider extends ContentProvider {
         switch (uriMatcher.match(uri)){
             case uriCode_SINGLE_ROW:
             case uriCode_ALL:{
-                Cursor cursor = db.query(TABLE_NAME, new String[]{ID}, selection, selectionArgs, null, null, null);
+                Cursor cursor = db.query(TABLE_NAME, new String[]{articleInfo.COLUMN_NAME_ID}, selection, selectionArgs, null, null, null);
                 ArrayList<Integer> values = new ArrayList<>();
                 while (cursor.moveToNext()){
-                    values.add(cursor.getInt(cursor.getColumnIndex(ID)));
+                    values.add(cursor.getInt(cursor.getColumnIndex(articleInfo.COLUMN_NAME_ID)));
                 }
                 count = db.delete(TABLE_NAME, selection, selectionArgs);
                 localBroadcastManager.sendBroadcast(new Intent().setAction(BROAD_CAST_MESSAGE_DATABASE_UPDATED)

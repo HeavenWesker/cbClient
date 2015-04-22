@@ -10,7 +10,7 @@ import android.provider.BaseColumns;
  */
 public class ArticleDBContract {
     public ArticleDBContract(){}
-    public static abstract class ArticleInfo implements BaseColumns {
+    public static class ArticleInfo implements BaseColumns {
         public static final String TABLE_NAME                   = "user_info";
         public static final String COLUMN_NAME_ID           ="_id";
         public static final String COLUMN_NAME_DATE          = "date";
@@ -18,6 +18,7 @@ public class ArticleDBContract {
         public static final String COLUMN_NAME_CONTENT    = "content";
         public static final String COLUMN_NAME_SOURCE       = "source";
         public static final String COLUMN_NAME_LINK         = "LINK";
+        public static final String COLUMN_NAME_OTHER        = "other";
     }
     private static final String TEXT_TYPE           = " TEXT";
     private static final String INT_TYPE            = " INTEGER";
@@ -29,7 +30,8 @@ public class ArticleDBContract {
                     ArticleInfo.COLUMN_NAME_TITLE  + TEXT_TYPE + COMMA_SEP +
                     ArticleInfo.COLUMN_NAME_CONTENT     + TEXT_TYPE + COMMA_SEP +
                     ArticleInfo.COLUMN_NAME_SOURCE       + TEXT_TYPE  + COMMA_SEP +
-                    ArticleInfo.COLUMN_NAME_LINK       + TEXT_TYPE  +
+                    ArticleInfo.COLUMN_NAME_LINK       + TEXT_TYPE  + COMMA_SEP +
+                    ArticleInfo.COLUMN_NAME_OTHER       + TEXT_TYPE +
                     ")";
     public static final String SQL_DROP_TABLE    =
             "DROP TABLE " + ArticleInfo.TABLE_NAME;

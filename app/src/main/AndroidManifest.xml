@@ -26,6 +26,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.catchingnow.evangelion.unit00.MainActivity" />
         </activity>
+        <provider
+            android:name="com.catchingnow.evangelion.unit00.ArticleContentProvider"
+            android:authorities="com.catchingnow.evangelion.unit00.provider"
+            android:multiprocess="true" />
     </application>
 
 </manifest>

@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ArticleItemFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class SectionsPagerFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,11 +49,11 @@ public class ArticleItemFragment extends Fragment implements AbsListView.OnItemC
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private SimpleAdapter mAdapter;
+    private ArticleAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static ArticleItemFragment newInstance(String param1, String param2) {
-        ArticleItemFragment fragment = new ArticleItemFragment();
+    public static SectionsPagerFragment newInstance(String param1, String param2) {
+        SectionsPagerFragment fragment = new SectionsPagerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,11 +61,16 @@ public class ArticleItemFragment extends Fragment implements AbsListView.OnItemC
         return fragment;
     }
 
+    public SectionsPagerFragment(ArticleAdapter mAdapter) {
+        this();
+        this.mAdapter = mAdapter;
+    }
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ArticleItemFragment() {
+    public SectionsPagerFragment() {
     }
 
     @Override
@@ -83,7 +88,7 @@ public class ArticleItemFragment extends Fragment implements AbsListView.OnItemC
         String[] from = {"title", "image", "date"};
         int[] to = {R.id.title, R.id.image, R.id.date};
 
-        mAdapter = new SimpleAdapter(getActivity(), (ArrayList) DummyContent.ITEMS, R.layout.card_view, from, to);
+//        mAdapter = new SimpleAdapter(getActivity(), (ArrayList) DummyContent.ITEMS, R.layout.card_view, from, to);
     }
 
     @Override

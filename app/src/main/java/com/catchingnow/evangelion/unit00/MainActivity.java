@@ -1,6 +1,7 @@
 package com.catchingnow.evangelion.unit00;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,8 +25,10 @@ import android.widget.Toolbar;
 
 import com.catchingnow.cbclient.R;
 
+import java.util.Date;
 
-public class MainActivity extends Activity implements AdapterView.OnItemClickListener, ArticleItemFragment.OnFragmentInteractionListener {
+
+public class MainActivity extends Activity implements AdapterView.OnItemClickListener, SectionsPagerFragment.OnFragmentInteractionListener {
 
     String[] pagerTitles;// = getResources().getStringArray(R.array.page_titles);
 
@@ -58,18 +61,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 //        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 //        viewPager.setPadding(0, 24+56+72, 0, 0);
-        viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager(), this) {
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return pagerTitles[position];
-            }
-
-            @Override
-            public int getCount() {
-                return pagerTitles.length;
-            }
-
-        });
+        viewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager(), this));
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 //        for (String pagerTitle:pagerTitles) {
@@ -203,5 +195,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
             }
             return row;
         }
+    }
+
+    public void insertData(View view){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ArticleDBContract.ArticleInfo.COLUMN_NAME_DATE, new Date().getTime());
+        contentValues.put(ArticleDBContract.ArticleInfo.COLUMN_NAME_TITLE, "this is title");
+        contentValues.put(ArticleDBContract.ArticleInfo.COLUMN_NAME_CONTENT, "this is content");
+        getContentResolver().insert(ArticleContentProvider.CONTENT_URI, contentValues);
     }
 }
