@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 
     defaultConfig {
         applicationId "com.catchingnow.cbclient"
@@ -25,4 +29,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v13:22.0.0'
     compile 'com.android.support:cardview-v7:22.0.0'
+    compile 'com.tumblr:jumblr:0.0.11'
 }

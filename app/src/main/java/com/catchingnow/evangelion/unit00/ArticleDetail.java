@@ -1,7 +1,8 @@
-package com.catchingnow.cbclient;
+package com.catchingnow.evangelion.unit00;
 
 import java.util.Locale;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import com.catchingnow.cbclient.R;
 
 
 public class ArticleDetail extends FragmentActivity {

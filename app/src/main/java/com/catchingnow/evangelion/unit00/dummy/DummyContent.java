@@ -1,11 +1,10 @@
-package com.catchingnow.cbclient.dummy;
+package com.catchingnow.evangelion.unit00.dummy;
 
 import com.catchingnow.cbclient.R;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -1,24 +1,22 @@
-package com.catchingnow.cbclient;
+package com.catchingnow.evangelion.unit00;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 
-import com.catchingnow.cbclient.dummy.DummyContent;
+import com.catchingnow.cbclient.R;
+import com.catchingnow.evangelion.unit00.dummy.DummyContent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A fragment representing a list of Items.

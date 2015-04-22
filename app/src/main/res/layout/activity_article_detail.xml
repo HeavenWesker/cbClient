@@ -1,24 +1,25 @@
-<LinearLayout
+<RelativeLayout
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent">
-    <Toolbar  xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/toolbar"
-              android:fitsSystemWindows="true"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:minHeight="?android:attr/actionBarSize"
-              android:background="?android:attr/colorPrimary"
-              android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
-              android:popupTheme="@android:style/ThemeOverlay.Material.Light" />
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
                                        xmlns:tools="http://schemas.android.com/tools"
                                        android:id="@+id/pager"
                                        android:layout_width="match_parent"
                                        android:layout_height="match_parent"
-                                       tools:context="com.catchingnow.cbclient.ArticleDetail">
+                                       tools:context="com.catchingnow.evangelion.unit00.ArticleDetail">
 
     </android.support.v4.view.ViewPager>
+    <Toolbar  xmlns:android="http://schemas.android.com/apk/res/android"
 
-</LinearLayout>
+              android:id="@+id/toolbar"
+              android:fitsSystemWindows="true"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/transparent"
+              android:minHeight="?android:attr/actionBarSize"
+              android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
+              android:popupTheme="@android:style/ThemeOverlay.Material.Light" />
+
+</RelativeLayout>

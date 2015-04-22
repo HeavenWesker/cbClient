@@ -1,4 +1,4 @@
-package com.catchingnow.cbclient;
+package com.catchingnow.evangelion.unit00;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import com.catchingnow.cbclient.R;
 
 
 public class MainActivity extends Activity implements AdapterView.OnItemClickListener, ArticleItemFragment.OnFragmentInteractionListener {
@@ -74,7 +76,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 //            actionBar.addTab(actionBar.newTab().setText(pagerTitle));
 //        }
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.tab);
-        new NetWork().getData();
+        Tumblr tumblr = new Tumblr();
+        tumblr.init();
 
     }
 
