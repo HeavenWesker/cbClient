@@ -40,6 +40,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     PagerTabStrip   pagerTabStrip;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Intent service = new Intent(MainActivity.this, cbClientService.class);
+        startService(service);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -68,8 +75,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 //            actionBar.addTab(actionBar.newTab().setText(pagerTitle));
 //        }
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.tab);
-        Tumblr tumblr = new Tumblr();
-        tumblr.init();
 
     }
 
