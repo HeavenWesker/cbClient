@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     DrawerLayout          drawerLayout;
     ViewPager       viewPager;
     PagerTabStrip   pagerTabStrip;
+    ArticleDetialFragment articleDetialFragment;
 
     @Override
     protected void onResume() {
@@ -75,6 +76,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 //            actionBar.addTab(actionBar.newTab().setText(pagerTitle));
 //        }
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.tab);
+        articleDetialFragment = (ArticleDetialFragment) getFragmentManager().findFragmentById(R.id.article_detail_fragment);
 
     }
 
@@ -125,9 +127,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     @Override
     public void onFragmentInteraction(int id) {
         Log.d("Clicked", ""+id);
-        Intent intent = new Intent(this, ArticleDetail.class);
-        startActivity(intent);
-
+//        Intent intent = new Intent(this, ArticleDetail.class);
+//        startActivity(intent);
+        viewPager.setCurrentItem(1);
     }
 
     class MyAdapter extends BaseAdapter{

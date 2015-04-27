@@ -34,8 +34,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         String sortOrder = null;
         Cursor cursor = context.getContentResolver().query(ArticleContentProvider.CONTENT_URI, projection,
                 selection, selectionArgs, sortOrder);
-        while (!cursor.isLast()){
-            cursor.moveToNext();
+//        while (!cursor.isLast()){
+//            cursor.moveToNext();
+//            Map<String, Object> item = new HashMap<>();
+//            item.put("date", cursor.getLong(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_DATE)));
+//            item.put("title", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_TITLE)));
+//            item.put("content", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_CONTENT)));
+//            item.put("link", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_LINK)));
+//            item.put("other", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_OTHER)));
+//            list.add(item);
+//        }
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
             Map<String, Object> item = new HashMap<>();
             item.put("date", cursor.getLong(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_DATE)));
             item.put("title", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_TITLE)));
@@ -44,6 +53,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             item.put("other", cursor.getString(cursor.getColumnIndex(ArticleDBContract.ArticleInfo.COLUMN_NAME_OTHER)));
             list.add(item);
         }
+
+        cursor.close();
         for (int i = 0; i < 2; i++) {
             Page page;
             if (i == 0){
@@ -72,7 +83,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 );
                 return sectionsPagerFragment;
             default:
-                return new Fragment();
+//                return new Fragment();
+                return new ArticleDetialFragment();
         }
     }
 
